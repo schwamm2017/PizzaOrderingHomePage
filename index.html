@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Pizza Ordering System</title>
+        <link href="https://fonts.googleapis.com/css?family=Abril+Fatface" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Fredericka+the+Great" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Charm" rel="stylesheet">
+        <style>
+            html{
+                font-size: 16px;
+            }
+
+            body{
+                margin: 0;
+            }
+
+            .container{
+                width: 80rem;
+                display: block;
+                margin:0 auto;
+            }
+            .primary-font {
+                font-family: 'Abril Fatface', cursive;
+                font-weight: 400;
+                color:#fdbc2c;
+            }
+
+            button{
+                background-color: #fdbc2c;
+                padding:10px 15px;
+                border-color: #fdbc2c;
+                margin-top: 25px;
+                font-family: 'Josefin Sans', sans-serif;
+                font-weight:bold;
+                font-size:14px;
+            }
+
+            p{
+                line-height: 30px;
+            }
+
+            button:focus{
+                outline: none;
+            }
+            .banner_header{
+                font-family: 'Charm', cursive;
+            }
+
+            .banner{
+                height: 80vh;
+                background: #000;
+                color: #ffffff;
+                text-align: center;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-image: url('./assets/banner-background.png');
+                background-size: cover;
+                background-position: 50% 50%;
+                background-repeat: no-repeat;
+            }
+
+            .banner-content{
+                width: 800px;
+            }
+
+            .banner-content > h1{
+                margin-top: 0;
+                margin-bottom: 16px;
+                font-size: 48px;
+            }
+
+            .banner-content > h2{
+                margin-top: 16px;
+                margin-bottom: 16px;
+                color:#fdbc2c;
+                font-size: 32px;
+            }
+
+            .banner-content > button{
+                margin-top: 16px;
+                margin-bottom: 0;
+                border:1px solid #fdbc2c;
+                outline: 0;
+                padding: 12px 18px;
+                background: transparent;
+                color:#fdbc2c;
+            }
+
+            .features{
+                background: url('./assets/background.jpg');
+                padding:5rem 0 9rem 0;
+                color:#ffffff;
+            }
+            .features h2, .news h2, .build-pizza h2{
+                font-size: 48px;
+                text-align: center;
+            }
+            .features h3, .news h3, .build-pizza h3, .mobile h3{
+                font-size: 36px;
+            }
+
+            .feature-items{
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+                grid-column-gap: 3rem;
+                text-align: left;
+            }
+
+            .feature-items img{
+                margin-top: 50px;
+            }
+
+            .features .container>p{
+                text-align: center;
+            }
+
+            .home-slider{
+                background: url('./assets/Base.png');
+                padding:4rem 0 5rem 0;
+            }
+
+            .slider-items{
+                display: grid;
+                grid-template-columns: 355px 570px;
+                grid-column-gap: 45px;
+                justify-content: center;
+            }
+
+            .slider-items .right-img{
+                position: relative;
+            }
+            .slider-items .right-img img{
+                position: absolute;
+                top:-90px;
+            }
+
+            .slider-items > div >h2{
+                font-size:48px;
+                color:#ffffff;
+                margin-top: 0;
+            }
+
+            .slider-items > div >p{
+                font-size:18px;
+                font-weight: 400;
+                color:#ffffff;
+            }
+            .slider-items > div >h3{
+                font-size:36px;
+                color:#000;
+            }
+
+            .slider-items button{
+                text-transform: uppercase;
+                width:170px;
+            }
+
+            .build-pizza{
+                background: url('./assets/background.jpg');
+                padding:5rem 0;
+                color:#ffffff;
+            }
+
+            .build-pizza > div > p{
+                text-align: center;
+            }
+
+            .build-pizza .accordion{
+                display: grid;
+                grid-template-columns: auto 1fr auto;
+                grid-column-gap: 2em;
+                align-items: center;
+            }
+
+            .build-pizza .accordion > h3{
+                margin: 0;
+            }
+
+            .accordion-container{
+                margin-top:40px;
+            }
+            .accordion-item{
+                padding:20px 5px;
+                border-top:1px solid rgba(56,56,56,1);
+            }
+
+            .accordion-container > div:last-child{
+                border-bottom:1px solid rgba(56,56,56,1);
+            }
+            .accordion{
+                cursor: pointer;
+            }
+
+            .accordion img{
+                width: 30px;
+            }
+
+            .acc-icon{
+                background: url("./assets/plus.png");
+                background-size: cover;
+                width:30px;
+                height:30px;
+            }
+
+            .accordion.active .acc-icon{
+                background: url("./assets/minus.png");
+                background-size: cover;
+            }
+
+            .panel{
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.2s ease-out;
+                display: flex;
+                justify-content: space-between;
+            }
+
+            .panel-left{
+                margin:30px 0;
+            }
+
+            .panel-left img{
+                padding:20px;
+                border:4px solid rgba(217, 79, 43, 1);;
+            }
+            .panel-right{
+                margin:30px 0 30px 20px;
+            }
+
+            .panel-right > p{
+                margin-top: 0;
+            }
+
+            ul{
+                padding-left: 20px;
+                color:#D94F2B;
+                font-size: 18px;
+                line-height: 30px;
+            }
+
+            .acc-after{
+                text-align: center;
+                margin-top: 30px;
+            }
+            .news{
+                background: url('./assets/background.jpg');
+                padding:5rem 0;
+                color:#ffffff;
+            }
+            .news-items{
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+                grid-column-gap: 3rem;
+                text-align: left;
+            }
+
+            .news-items > div{
+                display: grid;
+                grid-template-rows: auto auto auto 1fr auto;
+            }
+            /* .news-items > div:not(:last-child){
+                margin-right: 2rem;
+            } */
+
+            .news-items h5{
+                color:red;
+            }
+
+            .news-items button{
+                margin-top: 25px;
+                width: 120px;
+            }
+
+            .numbers{
+                background: url('./assets/number-bg.png');
+                padding:5rem 0;
+                color:#ffffff;
+            }
+
+            .number-items{
+                display: grid;
+                grid-template-columns: repeat(6,auto);
+                grid-column-gap: 3rem;
+            }
+
+            .number-items > div{
+                height:156px;
+                width:156px;
+                border:3px solid orangered;
+                border-radius: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .number-items img{
+                height: 40px;
+                margin-bottom: 5px;
+            }
+
+            .number-items > div p{
+                margin: 0;
+            }
+
+            .testimonials{
+                background: url('./assets/background.jpg');
+                padding:5rem 0;
+                color:#ffffff;
+                text-align: center;
+            }
+
+            .testimonials > div > h2{
+                font-size:48px;
+            }
+
+            .testimonials-items{
+                display: grid;
+                grid-template-columns: repeat(3,auto);
+                grid-column-gap: 2rem;
+                margin-top: 60px;
+            }
+
+            .testimonials-items h4{
+                font-size:24px;
+                margin:10px;
+            }
+
+            .testimonials-content{
+                padding:30px;
+                border:4px solid rgba(217, 79, 43, 1);
+                margin-top:30px;
+                font-size:24px;
+                font-family: 'Fredericka the Great', cursive;
+                position: relative;
+            }
+
+            .people-name{
+                font-size: 18px;
+                font-family: 'Josefin Sans', sans-serif;
+                margin-bottom: 0;
+            }
+
+            .website{
+                font-size: 18px;
+                color:#D94F2B;
+                font-family: 'Josefin Sans', sans-serif;
+                font-weight:700;
+                margin-top: 0;
+            }
+
+            .testimonials-content i{
+                display: block;
+                height: 20px;
+                width: 20px;
+                position: absolute;
+                border-top: 4px solid rgba(217, 79, 43, 1);
+                border-left: 4px solid rgba(217, 79, 43, 1);
+                background:url('./assets/background.jpg');
+                top: -15px;
+                left: 47%;
+                transform: rotate(45deg);
+            }
+
+            .mobile{
+                background: url('./assets/number-bg.png');
+                padding:5rem 0;
+                color:#ffffff;
+            }
+
+            .mobile img{
+                width:350px;
+            }
+
+            .mobile > div{
+                display: grid;
+                grid-template-columns:350px 670px;
+                grid-column-gap: 6rem;
+                align-items: center;
+               
+            }   
+
+            .mobile h2{
+                font-size: 48px;
+                margin-top: 0;
+            }
+
+            .mobile h3{
+                margin:10px 0;
+            }
+
+            .mobile-right-bottom > button{
+                text-transform: uppercase;
+                padding: 10px 20px;
+            }
+
+            .mobile-right-bottom > button:first-child{
+                margin-right: 10px;
+            }
+            .mobile-right-bottom > button > img{
+                width: 15px;
+                margin-right: 10px;
+                position: relative;
+                top: 2px;
+            }
+
+            .newsletter{
+                background: url('./assets/newsletter.png');
+                padding:3rem 0;
+                color:#000;
+                text-align: center;
+            }
+
+            .newsletter h2{
+                color:#000;
+                margin: 0;
+            }
+
+            #newsletter-email{
+                width:294px;
+                height:40px;
+                background:rgba(0,0,0,0);
+                border:1px solid rgba(0, 0, 0, 1); 
+                font-size:16px;
+                font-family: 'Josefin Sans', sans-serif;
+                font-weight:400;
+                line-height:20px;       
+            }
+
+            #newsletter-email::placeholder{
+                color:#000;
+                padding-left: 20px;
+            }
+            #newsletter-email:focus{
+                outline: none;
+            }
+
+            .newsletter button{
+                width:130px;
+                height:44px;
+                background:#000;
+                color:#FDBC2C;
+                line-height:20px;
+                border:1px solid #000;
+                position: relative;
+                top: -1px;
+            }
+
+            .contact{
+                background: url('./assets/background.jpg');
+                padding:5rem 0 2rem 0;
+                color:#ffffff;
+                text-align: center;
+            }
+
+            .contact > div{
+                display: grid;
+                grid-template-rows: repeat(3, auto);
+                justify-content: center;
+            }
+
+            .contact-line{
+                margin:10px auto;
+            }
+
+            .contact-phone{
+                margin-bottom: 70px;
+            }
+
+            .social-media{
+                display: grid;
+                grid-template-columns: repeat(5,auto);
+                grid-column-gap: 2rem;
+            }
+
+            .footer{
+                background: url('./assets/number-bg.png');
+                padding:1rem 0;
+                color:rgba(117,117,117,1);
+                text-align: center;
+                font-size:14px;
+            }
+
+
+        </style>
+    </head>
+    <body>
+        <div class="banner">
+          <div class="banner-content">
+            <h1 class="banner_header"><img src="./assets/baner-title.png" alt="banner-image"></h1>
+            <h2 class="primary-font">We create custome, personal pizzas with quality ingredient in only five minutes.</h2>
+            <button>ORDER ONLINE</button>
+          </div>
+        </div>
+        <div class="features">
+            <div class="container">
+                <h2 class="primary-font">We are pizza makers, and our mission is to make cool pizza which feeds all your senses.</h2>
+                <p>We prefer to rely on instinct and feel, measuring by hand, not by the gram. This is the authentic way to make pizza. Sure it’s a little unrefined, but we’re proud of that.</p>
+                <p>It’s pizza like this which feeds your sense of sharing, adding flavour to those occasions when you get together with friends and family.</p>
+                <p>And really, isn’t that what it’s all about? Because when pizza feeds all your senses, it’s not just great, it’s sensational.</p>
+                <div class="feature-items">
+                    <div>
+                        <img src="./assets/section2-1.png" alt="">
+                        <h3 class="primary-font">We're Careful</h3>
+                        <p>The crust is stored in a separate container, on a separate shelf in our fridge. The cheese, marinara sauce and pepperoni are stored in a  designated kit, and every pizza is freshly baked on designated parchment paper in our ovens.</p>
+                    </div>
+                    <div>
+                        <img src="./assets/section2-2.png" alt="">
+                        <h3 class="primary-font">We're Certified</h3>
+                        <p>Our cheese-only and cheese-and-pepperoni gluten-free pizzas are prepared using the procedures certified by the Gluten Intolerance Group (GIG), and we take specific caution when making these pizzas.</p>
+                    </div>
+                    <div>
+                        <img src="./assets/section2-3.png" alt="">
+                        <h3 class="primary-font">You're Creative</h3>
+                        <p>For those simply looking to reduce gluten in their diets, we offer a Create Your Own pizza option. The cheese, pepperoni and marinara come from our gluten-free kit, but all additional toppings are stored at our standard make table.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="home-slider">
+            <div class="container">
+                <div class="slider-items">
+                    <div class="left-content">
+                        <h2>Peri-Peri</h2>
+                        <h3>$18 - $37</h3>
+                        <p>Marinated Chicken Breast Fillets, Shallots, Roasted Capsicum, Caramelised Onions & Bocconcini on a Tomato base, topped with Peri-Peri sauce</p>
+                        <button>order now</button>
+                    </div>
+                    <div class="right-img">
+                        <img src="./assets/section3.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="build-pizza">
+            <div class="container">
+                <h2 class="primary-font">Build Your Own Pizza</h2>
+                <p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit<br>in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto.</p>
+                <div class="accordion-container">
+                  <div class="accordion-item">
+                    <div class="accordion"><img src="./assets/choose1.png" alt=""><h3 class="primary-font">Choose Your Crust</h3><div class="acc-icon"></div></div>
+                    <div class="panel">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                    </div>
+                  </div>
+                  <div class="accordion-item">
+                    <div class="accordion"><img src="./assets/choose2.png" alt=""><h3 class="primary-font">Select Your Sauce</h3><div class="acc-icon"></div></div>
+                    <div class="panel">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                    </div>
+                  </div>
+                  <div class="accordion-item">
+                    <div class="accordion"><img src="./assets/choose3.png" alt=""><h3 class="primary-font">Add Cheese</h3><div class="acc-icon"></div></div>
+                    <div class="panel">
+                        <div class="panel-left">
+                            <img src="./assets/temp.png" alt="">
+                        </div>
+                        <div class="panel-right">
+                            <p>What’s a pizza without brilliant cheese? Pick one or blend ‘em for that bohemian artisan feel. Choose from five different types of cheeses, each are perfect for any style of pizza or personal taste.</p>
+                            <ul>
+                                <li>Mozzarella</li>
+                                <li>Goat cheese</li>
+                                <li>Canadian cheddar</li>
+                                <li>Formaggio blend (asiago, romano + parmesan)</li>
+                                <li>Feta cheese</li>
+                                <li>Cheddar cheese</li>
+                                <li>Parmigiano cheese</li>
+                            </ul>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="accordion-item">
+                    <div class="accordion"><img src="./assets/choose4.png" alt=""><h3 class="primary-font">Choose Your Toppings</h3><div class="acc-icon"></div></div>
+                    <div class="panel">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="acc-after">
+                <button>CREATE YOUR OWN PIZZA</button>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript" src="./index.js"></script>
+        <div class="numbers">
+            <div class="container">
+                <div class="number-items">
+                    <div>
+                        <img src="./assets/number-5.png"/>
+                        <p>CRUSTS</p>
+                    </div>
+                    <div>
+                        <img src="./assets/number-17.png"/>
+                        <p>CRUSTS</p>
+                    </div>
+                    <div>
+                        <img src="./assets/number-8.png"/>
+                        <p>CRUSTS</p>
+                    </div>
+                    <div>
+                        <img src="./assets/number-20.png"/>
+                        <p>CRUSTS</p>
+                    </div>
+                    <div>
+                        <img src="./assets/number-11.png"/>
+                        <p>CRUSTS</p>
+                    </div>
+                    <div>
+                        <img src="./assets/number-36.png"/>
+                        <p>CRUSTS</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="testimonials">
+            <div class="container">
+                <h2 class="primary-font">Here's what some customers are saying...</h2>
+                <p>Customer service and product quality are our top priority. Although we strive to make  every customer experience as easy as possible, it’s how our customers<br>rate us that really matters. Because it makes our customers happy! And we love making people happy.</p>
+                <div>
+                    <div class="testimonials-items">
+                        <div>
+                            <img class="red-circle" src="./assets/red.png" alt="">
+                            <h4 class="primary-font">Florentine Ricotta</h4>
+                            <img src="./assets/star-1.png" alt="">
+                            <div class="testimonials-content">
+                              <i></i>
+                            “ We are serving pizza, your pizza is the fave of our family. Pick us as the pizza winner!”
+                            </div>
+                            <p class="people-name">Daniela Black</p>
+                            <p class="website">www.pizzatempo.com</p>
+                        </div>
+                        <div>
+                            <img class="red-circle" src="./assets/red.png" alt="">
+                            <h4 class="primary-font">Florentine Ricotta</h4>
+                            <img src="./assets/star-2.png" alt="">
+                            <div class="testimonials-content">
+                              <i></i>
+                            “ We are serving pizza, your pizza is the fave of our family. Pick us as the pizza winner!”
+                            </div>
+                            <p class="people-name">Daniela Black</p>
+                            <p class="website">www.pizzatempo.com</p>
+                        </div>
+                        <div>
+                            <img class="red-circle" src="./assets/red.png" alt="">
+                            <h4 class="primary-font">Florentine Ricotta</h4>
+                            <img src="./assets/star-3.png" alt="">
+                            <div class="testimonials-content">
+                              <i></i>
+                            “ We are serving pizza, your pizza is the fave of our family. Pick us as the pizza winner!”
+                            </div>
+                            <p class="people-name">Daniela Black</p>
+                            <p class="website">www.pizzatempo.com</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="mobile">
+            <div class="container">
+                <img src="./assets/iphone.png" alt="">
+                <div class="mobile-content">
+                    <h2 class="primary-font">Get the newest version of our mobile app for your phone.</h2>
+                    <p>Do you have an iPhone, Android device or an web-enabled mobile? Then it’s easier than ever to order hot and fresh pizza – no phone calls necessary! Mobile ordering lets you access all the best features in a format that’s tailored to the screen size of your mobile phone, find special online offers and order your favorite pizza and sides in a flash.</p>
+                    <h3 class="primary-font">Here's why it's great:</h3>
+                    <ul>
+                        <li>It's free</li>
+                        <li>No registration required</li>
+                        <li>Order from the full menu</li>
+                        <li>Find local deals</li>
+                        <li>Pay directly from the app</li>
+                    </ul>
+                    <div class="mobile-right-bottom">
+                        <button><img src="./assets/iphone-1.png"/>download iPhone App</button>
+                        <button><img src="./assets/andriod.png"/>download iPhone App</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="news">
+            <div class="container">
+                <h2 class="primary-font">Latest News & Recipes</h2>
+                <div class="news-items">
+                    <div>
+                        <img src="./assets/news.png" alt="">
+                        <h5>December 10, 2014</h5>
+                        <h3 class="primary-font">Prefect Pizza Using Baking Steel Broiler Method</h3>
+                        <p>Investigationes demostraverunt lectures legere me lius quod ii legunt saepius. Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum.</p>
+                        <button>READMORE</button>
+                    </div>
+                    <div>
+                        <img src="./assets/news.png" alt="">
+                        <h5>December 10, 2014</h5>
+                        <h3 class="primary-font">Green Onion and Burrata Cheese Pizza Recipe</h3>
+                        <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui.</p>
+                        <button>READMORE</button>
+                    </div>
+                    <div>
+                        <img src="./assets/news.png" alt="">
+                        <h5>December 10, 2014</h5>
+                        <h3 class="primary-font">Brussels Sprouts, Pepper and Bacon Hot Pizza Recipes</h3>
+                        <p>Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam; est usus legentis in iis qui.</p>
+                        <button>READMORE</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="newsletter">
+            <div class="container">
+                <h2 class="primary-font">Sign up for the newsletter and get exclusive deals.</h2>
+                <input type="text" name="" id="newsletter-email" placeholder="Enter your email address">
+                <button>SUBSCRIBE</button>
+            </div>
+        </div>
+        <div class="contact">
+            <div class="container">
+                <img class="contact-phone" src="./assets/contact.png" alt="">
+                <img class="contact-line" src="./assets/separatel.png" alt="">
+                <div class="social-media">
+                    <h3>Facebook</h3>
+                    <h3>Twitter</h3>
+                    <h3>Instagram</h3>
+                    <h3>Pinterest</h3>
+                    <h3>Fliekr</h3>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <p>Copyright © 2015 Mixer. All rights reserved.</p>
+        </div>
+    </body>
+</html>
+
